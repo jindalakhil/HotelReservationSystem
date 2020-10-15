@@ -34,7 +34,7 @@ public class HotelServiceImpl implements HotelService {
 
 	private long numberOfDaysCalculator(Date startDate, Date endDate) {
 		long difference_In_Time = endDate.getTime() - startDate.getTime();
-		return (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+		return (difference_In_Time / (1000 * 60 * 60 * 24));
 	}
 
 	public String findCheapestHotelForGivenRageOfDates(String startDate, String endDate) {
@@ -51,7 +51,7 @@ public class HotelServiceImpl implements HotelService {
 			 long days = numberOfDaysCalculator(start, end);
 			 System.out.println(days);
 			 for(HotelStructure hotel : hotelList ) {
-				long rate = hotel.getHotelRateForRegularCustomers() * days;
+				long rate = hotel.getHotelRateForRegularCustomersOnWeekDays() * days;
 				if(rate < min) {
 					min = rate;
 					result = hotel.getHotelName();
@@ -60,8 +60,7 @@ public class HotelServiceImpl implements HotelService {
 			 System.out.println("Total rates:" + min);
 			 return result;
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return null;
 	}

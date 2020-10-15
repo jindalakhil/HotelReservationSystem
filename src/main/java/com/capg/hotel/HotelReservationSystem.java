@@ -9,9 +9,9 @@ public class HotelReservationSystem {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcom to Hotel Reservation System");
-		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110);
-		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 160);
-		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220);
+		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
+		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 160, 50);
+		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220, 150);
 		HotelServiceImpl obj = new HotelServiceImpl();
 		obj.addHotelinList(lakewoodHotel);
 		obj.addHotelinList(ridgewoodHotel);

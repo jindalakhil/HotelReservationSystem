@@ -2,12 +2,14 @@ package com.capg.dto;
 
 public class HotelStructure {
 	private String hotelName;
-	private int hotelRateForRegularCustomers;
+	private int hotelRateForRegularCustomersOnWeekDays;
+	private int hotelRateForRegularCustomersOnWeekends;
 	
-	public HotelStructure(String hotelName, int hotelRateForRegularCustomers) {
+	public HotelStructure(String hotelName, int hotelRateForRegularCustomersOnWeekDays, int hotelRateForRegularCustomersOnWeekends) {
 		super();
 		this.hotelName = hotelName;
-		this.hotelRateForRegularCustomers = hotelRateForRegularCustomers;
+		this.hotelRateForRegularCustomersOnWeekDays = hotelRateForRegularCustomersOnWeekDays;
+		this.hotelRateForRegularCustomersOnWeekends = hotelRateForRegularCustomersOnWeekends;
 	}
 	
 	public HotelStructure() {}
@@ -20,19 +22,27 @@ public class HotelStructure {
 		this.hotelName = hotelName;
 	}
 
-	public int getHotelRateForRegularCustomers() {
-		return hotelRateForRegularCustomers;
+	public int getHotelRateForRegularCustomersOnWeekDays() {
+		return hotelRateForRegularCustomersOnWeekDays;
 	}
 
-	public void setHotelRateForRegularCustomers(int hotelRateForRegularCustomers) {
-		this.hotelRateForRegularCustomers = hotelRateForRegularCustomers;
+	public void setHotelRateForRegularCustomersOnWeekDays(int hotelRateForRegularCustomersOnWeekDays) {
+		this.hotelRateForRegularCustomersOnWeekDays = hotelRateForRegularCustomersOnWeekDays;
+	}
+
+	public int getHotelRateForRegularCustomersOnWeekends() {
+		return hotelRateForRegularCustomersOnWeekends;
+	}
+
+	public void setHotelRateForRegularCustomersOnWeekends(int hotelRateForRegularCustomersOnWeekends) {
+		this.hotelRateForRegularCustomersOnWeekends = hotelRateForRegularCustomersOnWeekends;
 	}
 
 	@Override
 	public String toString() {
-		return "HotelStructure [hotelName=" + hotelName + ", hotelRateForRegularCustomers="
-				+ hotelRateForRegularCustomers + "]";
+		return "HotelStructure [hotelName=" + hotelName + ", hotelRateForRegularCustomersOnWeekDays="
+				+ hotelRateForRegularCustomersOnWeekDays + ", hotelRateForRegularCustomersOnWeekends="
+				+ hotelRateForRegularCustomersOnWeekends + "]";
 	}
-	
 	
 }
