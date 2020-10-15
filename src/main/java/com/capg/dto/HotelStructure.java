@@ -4,6 +4,7 @@ public class HotelStructure {
 	private String hotelName;
 	private int hotelRateForRegularCustomersOnWeekDays;
 	private int hotelRateForRegularCustomersOnWeekends;
+	private int hotelRating;
 	
 	public HotelStructure(String hotelName, int hotelRateForRegularCustomersOnWeekDays, int hotelRateForRegularCustomersOnWeekends) {
 		super();
@@ -20,6 +21,14 @@ public class HotelStructure {
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public int getHotelRating() {
+		return hotelRating;
+	}
+
+	public void setHotelRating(int hotelRating) {
+		this.hotelRating = hotelRating;
 	}
 
 	public int getHotelRateForRegularCustomersOnWeekDays() {
@@ -42,7 +51,9 @@ public class HotelStructure {
 	public String toString() {
 		return "HotelStructure [hotelName=" + hotelName + ", hotelRateForRegularCustomersOnWeekDays="
 				+ hotelRateForRegularCustomersOnWeekDays + ", hotelRateForRegularCustomersOnWeekends="
-				+ hotelRateForRegularCustomersOnWeekends + "]";
+				+ hotelRateForRegularCustomersOnWeekends + ", hotelRating=" + hotelRating + "]";
 	}
+
+	
 	
 }

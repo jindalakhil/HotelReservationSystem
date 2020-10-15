@@ -37,4 +37,10 @@ public class HotelStructureTest {
 		testHotel.setHotelRateForRegularCustomersOnWeekends(1111);
 		Assert.assertEquals(1111, testHotel.getHotelRateForRegularCustomersOnWeekends());
 	} 
+	
+	@Test
+	public void hotel_Rating_Meathod_Test() {
+		testHotel.setHotelRating(3);
+		Assert.assertEquals(3, testHotel.getHotelRating());
+	}
 }

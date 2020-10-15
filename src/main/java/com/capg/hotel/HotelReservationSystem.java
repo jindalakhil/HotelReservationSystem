@@ -16,6 +16,9 @@ public class HotelReservationSystem {
 		obj.addHotelinList(lakewoodHotel);
 		obj.addHotelinList(ridgewoodHotel);
 		obj.addHotelinList(bridgewoodHotel);
+		lakewoodHotel.setHotelRating(3);
+		bridgewoodHotel.setHotelRating(4);
+		ridgewoodHotel.setHotelRating(5);
 		obj.showHotelList();
 		
 		System.out.println("Enter start date in format dd-MM-yyyy");
