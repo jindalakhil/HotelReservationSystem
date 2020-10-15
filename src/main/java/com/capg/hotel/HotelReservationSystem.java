@@ -10,7 +10,7 @@ public class HotelReservationSystem {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcom to Hotel Reservation System");
 		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
-		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 160, 50);
+		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 150, 50);
 		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220, 150);
 		HotelServiceImpl obj = new HotelServiceImpl();
 		obj.addHotelinList(lakewoodHotel);
@@ -22,6 +22,6 @@ public class HotelReservationSystem {
 		String start = sc.nextLine();
 		System.out.println("Enter the end date in format dd-MM-yyyy");
 		String end = sc.nextLine();
-		System.out.println("Cheapest Hotel Is: " + obj.findCheapestHotelForGivenRageOfDates(start, end));
+		System.out.println("Cheapest Hotel Is: " + obj.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate(start, end));
 	}
 }

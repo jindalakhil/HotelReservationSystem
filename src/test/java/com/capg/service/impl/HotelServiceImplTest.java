@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.capg.dto.HotelStructure;
+import java.util.List;
 
 public class HotelServiceImplTest {
 	HotelStructure hotel1 = new HotelStructure("hotel1", 1,3);
@@ -16,7 +17,7 @@ public class HotelServiceImplTest {
 	public void test_Add_Hotel_In_HotelList_Meathod() {
 		obj.addHotelinList(hotel1);
 		obj.addHotelinList(hotel2);
-		obj.showHotelList();
+		//obj.showHotelList();
 		ArrayList<HotelStructure> test = new ArrayList<HotelStructure>();
 		test.add(hotel1);
 		test.add(hotel2);
@@ -28,8 +29,25 @@ public class HotelServiceImplTest {
 		obj.addHotelinList(hotel1);
 		obj.addHotelinList(hotel2);
 		String result = obj.findCheapestHotelForGivenRageOfDates("12-3-2020", "12-4-2020");
-		System.out.println(result);
+		//System.out.println(result);
 		Assert.assertEquals(result, "hotel1");
+	}
+	
+	@Test
+	public void find_Chepest_Hotel_Test_Include_Weekdays_And_Weekend_Rates() {
+		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
+		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 150, 50);
+		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220, 150);
+		HotelServiceImpl obj1 = new HotelServiceImpl();
+		obj1.addHotelinList(lakewoodHotel);
+		obj1.addHotelinList(ridgewoodHotel);
+		obj1.addHotelinList(bridgewoodHotel);
+		List<String> result = obj1.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate("11-09-2020", "12-09-2020");
+		//System.out.println(result);
+		List<String> test = new ArrayList<String>();
+		test.add("Lakewood");
+		test.add("Bridgewood");
+		Assert.assertEquals(result, test);
 	}
 	
 }
