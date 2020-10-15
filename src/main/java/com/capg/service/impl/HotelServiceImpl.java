@@ -83,36 +83,34 @@ public class HotelServiceImpl implements HotelService {
 		return count;
 	}
 	
-	public List<String> findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate(String startDate, String endDate) {
+	public HotelStructure findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate(String startDate, String endDate) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date start;
 		Date end;
 	    long min = Long.MAX_VALUE;
-	    String result = null;
 		try {
 			 start = formatter.parse(startDate);
 			 end = formatter.parse(endDate);
-			 ArrayList<String> cheapHotelList = new ArrayList<String>();
 			 System.out.println(start);
 			 System.out.println(end);
 			 long totalDays = numberOfDaysCalculator(start, end);
 			 long weekends = numberOfWeekendDaysCalculator(start, end);
 			 long weekDays = totalDays - weekends;
-//			 System.out.println(totalDays);
-//			 System.out.println(weekDays);
-//			 System.out.println(weekends);
+			 int rating = 0;
+			 HotelStructure hotelResult = null;
 			 for(HotelStructure hotel : hotelList ) {
 				long rate = (hotel.getHotelRateForRegularCustomersOnWeekDays() * weekDays) + (hotel.getHotelRateForRegularCustomersOnWeekends() * weekends);
 				if(rate < min) {
 					min = rate;
-					cheapHotelList.clear();
-					cheapHotelList.add(hotel.getHotelName());
+					hotelResult = hotel;
 				} else if(rate == min) {
-					cheapHotelList.add(hotel.getHotelName());
+					if(rating < hotel.getHotelRating()) {
+						hotelResult = hotel;
+					}
 				}
 			 }
 			 System.out.println("Total rates:" + min);
-			 return cheapHotelList;
+			 return hotelResult;
 		} catch (ParseException e) {
 			System.out.println(e.toString());
 		}

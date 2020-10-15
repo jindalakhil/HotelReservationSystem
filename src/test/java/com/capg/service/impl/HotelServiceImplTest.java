@@ -38,16 +38,16 @@ public class HotelServiceImplTest {
 		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
 		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 150, 50);
 		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220, 150);
+		lakewoodHotel.setHotelRating(3);
+		bridgewoodHotel.setHotelRating(4);
+		ridgewoodHotel.setHotelRating(5);
 		HotelServiceImpl obj1 = new HotelServiceImpl();
 		obj1.addHotelinList(lakewoodHotel);
 		obj1.addHotelinList(ridgewoodHotel);
 		obj1.addHotelinList(bridgewoodHotel);
-		List<String> result = obj1.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate("11-09-2020", "12-09-2020");
-		//System.out.println(result);
-		List<String> test = new ArrayList<String>();
-		test.add("Lakewood");
-		test.add("Bridgewood");
-		Assert.assertEquals(result, test);
+		HotelStructure result = obj1.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate("11-09-2020", "12-09-2020");
+		System.out.println(result);
+		Assert.assertEquals(result, bridgewoodHotel);
 	}
 	
 }
