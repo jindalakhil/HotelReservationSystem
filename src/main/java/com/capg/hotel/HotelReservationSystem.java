@@ -16,6 +16,12 @@ public class HotelReservationSystem {
 		obj.addHotelinList(lakewoodHotel);
 		obj.addHotelinList(ridgewoodHotel);
 		obj.addHotelinList(bridgewoodHotel);
+		lakewoodHotel.setHotelRateForRewardCustomersOnWeekDays(80);
+		lakewoodHotel.setHotelRateForRewardCustomersOnWeekends(80);
+		bridgewoodHotel.setHotelRateForRewardCustomersOnWeekDays(110);
+		bridgewoodHotel.setHotelRateForRewardCustomersOnWeekends(50);
+		ridgewoodHotel.setHotelRateForRewardCustomersOnWeekDays(100);
+		ridgewoodHotel.setHotelRateForRewardCustomersOnWeekends(40);
 		lakewoodHotel.setHotelRating(3);
 		bridgewoodHotel.setHotelRating(4);
 		ridgewoodHotel.setHotelRating(5);

@@ -4,6 +4,8 @@ public class HotelStructure {
 	private String hotelName;
 	private int hotelRateForRegularCustomersOnWeekDays;
 	private int hotelRateForRegularCustomersOnWeekends;
+	private int hotelRateForRewardCustomersOnWeekDays;
+	private int hotelRateForRewardCustomersOnWeekends;
 	private int hotelRating;
 	
 	public HotelStructure(String hotelName, int hotelRateForRegularCustomersOnWeekDays, int hotelRateForRegularCustomersOnWeekends) {
@@ -25,6 +27,22 @@ public class HotelStructure {
 
 	public int getHotelRating() {
 		return hotelRating;
+	}
+
+	public int getHotelRateForRewardCustomersOnWeekDays() {
+		return hotelRateForRewardCustomersOnWeekDays;
+	}
+
+	public void setHotelRateForRewardCustomersOnWeekDays(int hotelRateForRewardCustomersOnWeekDays) {
+		this.hotelRateForRewardCustomersOnWeekDays = hotelRateForRewardCustomersOnWeekDays;
+	}
+
+	public int getHotelRateForRewardCustomersOnWeekends() {
+		return hotelRateForRewardCustomersOnWeekends;
+	}
+
+	public void setHotelRateForRewardCustomersOnWeekends(int hotelRateForRewardCustomersOnWeekends) {
+		this.hotelRateForRewardCustomersOnWeekends = hotelRateForRewardCustomersOnWeekends;
 	}
 
 	public void setHotelRating(int hotelRating) {
@@ -51,9 +69,8 @@ public class HotelStructure {
 	public String toString() {
 		return "HotelStructure [hotelName=" + hotelName + ", hotelRateForRegularCustomersOnWeekDays="
 				+ hotelRateForRegularCustomersOnWeekDays + ", hotelRateForRegularCustomersOnWeekends="
-				+ hotelRateForRegularCustomersOnWeekends + ", hotelRating=" + hotelRating + "]";
-	}
-
-	
-	
+				+ hotelRateForRegularCustomersOnWeekends + ", hotelRateForRewardCustomersOnWeekDays="
+				+ hotelRateForRewardCustomersOnWeekDays + ", hotelRateForRewardCustomersOnWeekends="
+				+ hotelRateForRewardCustomersOnWeekends + ", hotelRating=" + hotelRating + "]";
+	}	
 }
