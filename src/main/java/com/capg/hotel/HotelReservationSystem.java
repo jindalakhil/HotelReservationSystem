@@ -25,6 +25,6 @@ public class HotelReservationSystem {
 		String start = sc.nextLine();
 		System.out.println("Enter the end date in format dd-MM-yyyy");
 		String end = sc.nextLine();
-		System.out.println("Cheapest Hotel Is: " + obj.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate(start, end));
+		System.out.println("Cheapest Hotel Is: " + obj.findBestRatedHotelForGivenRageOfDates(start, end));
 	}
 }

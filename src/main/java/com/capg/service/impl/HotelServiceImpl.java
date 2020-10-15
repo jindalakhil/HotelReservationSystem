@@ -3,6 +3,7 @@ package com.capg.service.impl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -111,6 +112,29 @@ public class HotelServiceImpl implements HotelService {
 			 }
 			 System.out.println("Total rates:" + min);
 			 return hotelResult;
+		} catch (ParseException e) {
+			System.out.println(e.toString());
+		}
+		return null;
+	}
+	
+	public HotelStructure findBestRatedHotelForGivenRageOfDates(String startDate, String endDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Date start;
+		Date end;
+		try {
+			 start = formatter.parse(startDate);
+			 end = formatter.parse(endDate);
+			 System.out.println(start);
+			 System.out.println(end);
+			 long totalDays = numberOfDaysCalculator(start, end);
+			 long weekends = numberOfWeekendDaysCalculator(start, end);
+			 long weekDays = totalDays - weekends;
+			 int rating = 0;
+			HotelStructure result = hotelList.stream().sorted(Comparator.comparing(HotelStructure::getHotelRating).reversed()).findFirst().orElse(null);
+			long rate = (result.getHotelRateForRegularCustomersOnWeekDays() * weekDays) + (result.getHotelRateForRegularCustomersOnWeekends() * weekends);
+			 System.out.println("Total rates:" + rate);
+			 return result;
 		} catch (ParseException e) {
 			System.out.println(e.toString());
 		}

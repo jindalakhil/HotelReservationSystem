@@ -50,4 +50,20 @@ public class HotelServiceImplTest {
 		Assert.assertEquals(result, bridgewoodHotel);
 	}
 	
+	@Test
+	public void find_Best_Rated_Hotel_Test() {
+		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
+		HotelStructure bridgewoodHotel = new HotelStructure("Bridgewood", 150, 50);
+		HotelStructure ridgewoodHotel = new HotelStructure("Ridgewood", 220, 150);
+		lakewoodHotel.setHotelRating(3);
+		bridgewoodHotel.setHotelRating(4);
+		ridgewoodHotel.setHotelRating(5);
+		HotelServiceImpl obj1 = new HotelServiceImpl();
+		obj1.addHotelinList(lakewoodHotel);
+		obj1.addHotelinList(ridgewoodHotel);
+		obj1.addHotelinList(bridgewoodHotel);
+		HotelStructure result = obj1.findBestRatedHotelForGivenRageOfDates("11-09-2020", "12-09-2020");
+		System.out.println(result);
+		Assert.assertEquals(result, ridgewoodHotel);
+	}
 }
