@@ -140,5 +140,39 @@ public class HotelServiceImpl implements HotelService {
 		}
 		return null;
 	}
+	
+	public HotelStructure findCheapestBestRatedHotelForGivenRageOfDatesForRewardCustomers(String startDate, String endDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Date start;
+		Date end;
+	    long min = Long.MAX_VALUE;
+		try {
+			 start = formatter.parse(startDate);
+			 end = formatter.parse(endDate);
+			 System.out.println(start);
+			 System.out.println(end);
+			 long totalDays = numberOfDaysCalculator(start, end);
+			 long weekends = numberOfWeekendDaysCalculator(start, end);
+			 long weekDays = totalDays - weekends;
+			 int rating = 0;
+			 HotelStructure hotelResult = null;
+			 for(HotelStructure hotel : hotelList ) {
+				long rate = (hotel.getHotelRateForRewardCustomersOnWeekDays() * weekDays) + (hotel.getHotelRateForRewardCustomersOnWeekends() * weekends);
+				if(rate < min) {
+					min = rate;
+					hotelResult = hotel;
+				} else if(rate == min) {
+					if(rating < hotel.getHotelRating()) {
+						hotelResult = hotel;
+					}
+				}
+			 }
+			 System.out.println("Total rates:" + min);
+			 return hotelResult;
+		} catch (ParseException e) {
+			System.out.println(e.toString());
+		}
+		return null;
+	}
 
 }
