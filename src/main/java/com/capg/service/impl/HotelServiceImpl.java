@@ -91,7 +91,7 @@ public class HotelServiceImpl implements HotelService {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date start;
 		Date end;
-		long min = Long.MAX_VALUE;
+		long minRate = Long.MAX_VALUE;
 		try {
 			start = formatter.parse(startDate);
 			end = formatter.parse(endDate);
@@ -102,19 +102,20 @@ public class HotelServiceImpl implements HotelService {
 			long weekDays = totalDays - weekends;
 			int rating = 0;
 			HotelStructure hotelResult = null;
-			for (HotelStructure hotel : hotelList) {
-				long rate = (hotel.getHotelRateForRegularCustomersOnWeekDays() * weekDays)
-						+ (hotel.getHotelRateForRegularCustomersOnWeekends() * weekends);
-				if (rate < min) {
-					min = rate;
-					hotelResult = hotel;
-				} else if (rate == min) {
-					if (rating < hotel.getHotelRating()) {
-						hotelResult = hotel;
-					}
-				}
-			}
-			System.out.println("Total rates:" + min);
+			minRate = hotelList.stream()
+					.map(n -> n.getHotelRateForRegularCustomersOnWeekDays() * weekDays
+							+ n.getHotelRateForRegularCustomersOnWeekends() * weekDays)
+					.sorted().findFirst().orElse(null);
+			long minStream = minRate;
+
+			List<HotelStructure> minHotelList = hotelList.stream()
+					.filter(n -> (n.getHotelRateForRegularCustomersOnWeekDays() * weekDays
+							+ n.getHotelRateForRegularCustomersOnWeekends() * weekDays) == minStream)
+					.collect(Collectors.toList());
+
+			hotelResult = minHotelList.stream().max(Comparator.comparing(HotelStructure::getHotelRating)).orElse(null);
+
+			System.out.println("Total rates: " + minRate);
 			return hotelResult;
 		} catch (ParseException e) {
 			System.out.println(e.toString());
@@ -129,8 +130,6 @@ public class HotelServiceImpl implements HotelService {
 		try {
 			start = formatter.parse(startDate);
 			end = formatter.parse(endDate);
-			System.out.println(start);
-			System.out.println(end);
 			long totalDays = numberOfDaysCalculator(start, end);
 			long weekends = numberOfWeekendDaysCalculator(start, end);
 			long weekDays = totalDays - weekends;
