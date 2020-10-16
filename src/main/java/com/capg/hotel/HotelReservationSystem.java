@@ -3,10 +3,11 @@ package com.capg.hotel;
 import java.util.Scanner;
 
 import com.capg.dto.*;
+import com.capg.exception.InvalidCustomerTypeException;
 import com.capg.service.impl.*;
 
 public class HotelReservationSystem {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcom to Hotel Reservation System");
 		HotelStructure lakewoodHotel = new HotelStructure("Lakewood", 110, 90);
@@ -26,11 +27,25 @@ public class HotelReservationSystem {
 		bridgewoodHotel.setHotelRating(4);
 		ridgewoodHotel.setHotelRating(5);
 		obj.showHotelList();
-		
-		System.out.println("Enter start date in format dd-MM-yyyy");
-		String start = sc.nextLine();
-		System.out.println("Enter the end date in format dd-MM-yyyy");
-		String end = sc.nextLine();
-		System.out.println("Cheapest Hotel Is: " + obj.findCheapestBestRatedHotelForGivenRageOfDatesForRewardCustomers(start, end));
+
+		try {
+			System.out.println("Enter start date in format dd-MM-yyyy");
+			String start = sc.nextLine();
+			System.out.println("Enter the end date in format dd-MM-yyyy");
+			String end = sc.nextLine();
+			System.out.println("Enter the Customer type: Regular or Reward");
+			String customerType = sc.nextLine();
+			if (!(customerType.equalsIgnoreCase("regular") || customerType.equalsIgnoreCase("reward"))) {
+				throw new InvalidCustomerTypeException();
+			}
+			if (customerType.equalsIgnoreCase("regular"))
+				System.out.println("Cheapest Hotel Is: "
+						+ obj.findCheapestHotelForGivenRageOfDatesIncludeWeekendsAndWeekdaysRate(start, end));
+			else if (customerType.equalsIgnoreCase("reward"))
+				System.out.println("Cheapest Hotel Is: "
+						+ obj.findCheapestBestRatedHotelForGivenRageOfDatesForRewardCustomers(start, end));
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 }
